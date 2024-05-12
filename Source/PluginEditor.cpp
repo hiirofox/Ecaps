@@ -23,9 +23,12 @@ EcapsAudioProcessorEditor::EcapsAudioProcessorEditor(EcapsAudioProcessor& p)
 	S_DISP1.ParamLink(audioProcessor.GetParams(), "disp");
 	S_UPITCH.setText("UPitch");
 	S_UPITCH.ParamLink(audioProcessor.GetParams(), "upitch");
+	S_SYNC.setText("SYNC");
+	S_SYNC.ParamLink(audioProcessor.GetParams(), "sync");
 	addAndMakeVisible(S_FREQ1);
 	addAndMakeVisible(S_DISP1);
 	addAndMakeVisible(S_UPITCH);
+	addAndMakeVisible(S_SYNC);
 }
 
 EcapsAudioProcessorEditor::~EcapsAudioProcessorEditor()
@@ -50,4 +53,5 @@ void EcapsAudioProcessorEditor::resized()
 	S_FREQ1.setPos(32 + 64 * 0, 32);
 	S_DISP1.setPos(32 + 64 * 1, 32);
 	S_UPITCH.setPos(32 + 64 * 2, 32);
+	S_SYNC.setPos(32 + 64 * 3, 32);
 }

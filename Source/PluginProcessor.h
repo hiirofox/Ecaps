@@ -89,6 +89,9 @@ private:
 
 	HDSP::Disperse disp1l;
 	HDSP::Disperse disp1r;
+	
+	HDSP::Sync sync1l;
+	HDSP::Sync sync1r;
 	//==============================================================================
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(EcapsAudioProcessor)
 };

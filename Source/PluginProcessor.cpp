@@ -53,6 +53,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout EcapsAudioProcessor::createP
 	layout.add(std::make_unique<juce::AudioParameterFloat>("freq1", "FREQ1", 0.0, 1.0, 0.0));
 	layout.add(std::make_unique<juce::AudioParameterFloat>("disp", "DISP", -1.0, 1.0, 0.0));
 	layout.add(std::make_unique<juce::AudioParameterFloat>("upitch", "UPITCH", 0.0, 1.0, 0.0));
+	layout.add(std::make_unique<juce::AudioParameterFloat>("sync", "SYNC", 0.0, 8.0, 1.0));
 	return layout;
 }
 
@@ -211,6 +212,8 @@ void EcapsAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::M
 	float freq = *Params.getRawParameterValue("freq1");
 	float disp = *Params.getRawParameterValue("disp");
 	float unipitch = *Params.getRawParameterValue("upitch");
+	float sync = *Params.getRawParameterValue("sync");
+
 	freq = freq * freq * 5000;
 	unipitch = unipitch * unipitch;
 	ad1l.setFreq(freq);
@@ -219,20 +222,25 @@ void EcapsAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::M
 	uni1r.setUnisonNum(5);
 	uni1l.setPhase(0);
 	uni1r.setPhase(0);
-	uni1l.setSpeed(unipitch * 100);
-	uni1r.setSpeed(unipitch * 110);
+	uni1l.setSpeed(unipitch * 1000);
+	uni1r.setSpeed(unipitch * 1100);
 
 	disp1l.setPhase(0);
 	disp1r.setPhase(0);
-	disp1l.setSpeed(disp * 10000);
-	disp1l.setSpeed(disp * 10000);
+	disp1l.setSpeed(disp * 100000);
+	disp1l.setSpeed(disp * 100000);
+
+	sync1l.setSync(sync);
+	sync1r.setSync(sync);
 
 	for (int i = 0; i < numSamples; ++i)
 	{
 		wt_counter++;
-		if (wt_counter >= 12)//一会儿更新一次谐波
+		if (wt_counter >= 160)//一会儿更新一次谐波
 		{
 			wt_counter = 0;
+
+			ad1l.setAmplitude(0, (float)0.0);
 			for (int j = 1; j < HarmonicNum; ++j)//初始化谐波(saw)
 			{
 				ad1l.setAmplitude(j, (float)1.0 / j);
@@ -243,10 +251,13 @@ void EcapsAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::M
 					ad1r.setAmplitude(j, 0);
 				}
 			}
+			//应用谐波效果
 			disp1l.apply(ad1l.getAmplitudePtr(), HarmonicNum);
 			disp1l.apply(ad1r.getAmplitudePtr(), HarmonicNum);
-			uni1l.apply(ad1l.getAmplitudePtr(), HarmonicNum);//应用谐波效果
+			uni1l.apply(ad1l.getAmplitudePtr(), HarmonicNum);
 			uni1r.apply(ad1r.getAmplitudePtr(), HarmonicNum);
+			sync1l.apply(ad1l.getAmplitudePtr(), HarmonicNum);
+			sync1r.apply(ad1r.getAmplitudePtr(), HarmonicNum);
 		}
 
 		float outl = ad1l.ProcWithFM(0, 0) * 0.1;

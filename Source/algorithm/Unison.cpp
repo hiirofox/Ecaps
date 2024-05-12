@@ -11,37 +11,14 @@ HDSP::Unison::Unison()
 	}
 }
 
-HDSP::Unison::~Unison()
-{
-}
+HDSP::Unison::~Unison() {}
+void HDSP::Unison::reset() { t = phase; }
+void HDSP::Unison::SetCosTablePtr(float* tablePtr, int tableLen) { cos_table = tablePtr; table_len = tableLen; }
+void HDSP::Unison::setPhase(float Phase) { phase = Phase; }
+void HDSP::Unison::setSpeed(int32_t Speed) { speed = Speed; }
+void HDSP::Unison::setPan(float Pan) { pan = Pan; }
+void HDSP::Unison::setUnisonNum(int Num) { num = Num; }
 
-void HDSP::Unison::reset()
-{
-	t = phase;
-}
-
-void HDSP::Unison::SetCosTablePtr(float* tablePtr, int tableLen)
-{
-	cos_table = tablePtr;
-	table_len = tableLen;
-}
-
-void HDSP::Unison::setPhase(float Phase)
-{
-	phase = Phase;
-}
-void HDSP::Unison::setSpeed(int32_t Speed)
-{
-	speed = Speed;
-}
-void HDSP::Unison::setPan(float Pan)
-{
-	pan = Pan;
-}
-void HDSP::Unison::setUnisonNum(int Num)
-{
-	num = Num;
-}
 void HDSP::Unison::apply(float* Amps, int harmN)
 {
 	t += speed;

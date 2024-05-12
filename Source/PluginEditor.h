@@ -33,6 +33,6 @@ private:
 	LMKnob S_FREQ1;
 	LMKnob S_DISP1;
 	LMKnob S_UPITCH;
-
+	LMKnob S_SYNC;
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(EcapsAudioProcessorEditor)
 };
