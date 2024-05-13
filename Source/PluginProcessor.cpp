@@ -252,12 +252,12 @@ void EcapsAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::M
 				}
 			}
 			//应用谐波效果
-			sync1l.apply(ad1l.getAmplitudePtr(), HarmonicNum);
-			sync1r.apply(ad1r.getAmplitudePtr(), HarmonicNum);
 			disp1l.apply(ad1l.getAmplitudePtr(), HarmonicNum);
 			disp1l.apply(ad1r.getAmplitudePtr(), HarmonicNum);
 			uni1l.apply(ad1l.getAmplitudePtr(), HarmonicNum);
 			uni1r.apply(ad1r.getAmplitudePtr(), HarmonicNum);
+			sync1l.apply(ad1l.getAmplitudePtr(), HarmonicNum);
+			sync1r.apply(ad1r.getAmplitudePtr(), HarmonicNum);
 		}
 
 		float outl = ad1l.ProcWithFM(0, 0) * 0.1;

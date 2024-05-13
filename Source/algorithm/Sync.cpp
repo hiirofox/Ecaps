@@ -25,7 +25,7 @@ void HDSP::Sync::apply(float Amps[], int harmN)//sinc卷积
 	}
 }*/
 
-
+/*
 void HDSP::Sync::apply(float Amps[], int harmN)//fft
 {
 	HDSP::complex_f32_t tmp1[512];
@@ -52,6 +52,23 @@ void HDSP::Sync::apply(float Amps[], int harmN)//fft
 	{
 		Amps[i] = tmp2[i].re;
 	}
+}*/
+
+void HDSP::Sync::apply(float Amps[], int harmN)//假的sync,听起来挺像,而且快
+{
+	float tmp1[512];
+	memset(tmp1, 0, sizeof(tmp1));
+	for (int i = 1; i < 512; ++i)
+	{
+		int j = sync * i;
+		if (j >= harmN - 1)break;
+		float mix = sync * i;
+		mix = mix - (int)mix;
+		tmp1[j] += Amps[i] * (1.0 - mix);
+		tmp1[j + 1] += Amps[i] * mix;
+	}
+	for (int i = 1; i < 512; ++i)
+		Amps[i] = tmp1[i];
 }
 
 float HDSP::Sinc_Func(float x)
