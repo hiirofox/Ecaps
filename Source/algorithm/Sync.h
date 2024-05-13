@@ -1,6 +1,6 @@
 #pragma once
 
-#include <math.h>
+#define _USE_MATH_DEFINES
 #include <string.h>
 #include <math.h>
 #include "math/fft.h"

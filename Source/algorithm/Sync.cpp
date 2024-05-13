@@ -1,5 +1,4 @@
 #include "Sync.h"
-#include <cassert>
 
 HDSP::Sync::Sync() { sync = 1; }
 HDSP::Sync::~Sync() {}
@@ -43,7 +42,7 @@ void HDSP::Sync::apply(float Amps[], int harmN)//fft
 	{
 		float v = sync * i / 1024.0;
 		int j = (v - (int)v) * harmN;
-		tmp2[i].re = tmp1[j].re / 1024.0;
+		tmp2[i].re = tmp1[j].re / harmN;
 		tmp2[i].im = 0;
 	}
 
@@ -53,6 +52,7 @@ void HDSP::Sync::apply(float Amps[], int harmN)//fft
 		Amps[i] = tmp2[i].re;
 	}
 }*/
+
 
 void HDSP::Sync::apply(float Amps[], int harmN)//假的sync,听起来挺像,而且快
 {
@@ -64,8 +64,11 @@ void HDSP::Sync::apply(float Amps[], int harmN)//假的sync,听起来挺像,而且快
 		if (j >= harmN - 1)break;
 		float mix = sync * i;
 		mix = mix - (int)mix;
-		tmp1[j] += Amps[i] * (1.0 - mix);
-		tmp1[j + 1] += Amps[i] * mix;
+		//tmp1[j] += Amps[i] * (1.0 - mix);//线性插值
+		//tmp1[j + 1] += Amps[i] * mix;
+
+		tmp1[j] += Amps[i] * (cos(mix * M_PI) + 1.0) / 2.0;//用余弦插值(不是余弦插值)
+		tmp1[j + 1] += Amps[i] * (cos((1.0 - mix) * M_PI) + 1.0) / 2.0;
 	}
 	for (int i = 1; i < 512; ++i)
 		Amps[i] = tmp1[i];
