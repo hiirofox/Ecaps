@@ -3,7 +3,7 @@
 #include <math.h>
 #include <stdint.h>
 
-#define HarmonicNum 128
+#define HarmonicNum 512
 #define SAMPLE_RATE 48000//采样率,先固定了
 
 namespace HDSP
