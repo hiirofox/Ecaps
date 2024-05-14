@@ -236,7 +236,7 @@ void EcapsAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::M
 	for (int i = 0; i < numSamples; ++i)
 	{
 		wt_counter++;
-		if (wt_counter >= 160)//一会儿更新一次谐波
+		if (wt_counter >= 80)//一会儿更新一次谐波
 		{
 			wt_counter = 0;
 
