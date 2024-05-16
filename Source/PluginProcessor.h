@@ -92,6 +92,10 @@ private:
 	
 	HDSP::Sync sync1l;
 	HDSP::Sync sync1r;
+
+	HDSP::Octaver oct1l;
+	HDSP::Octaver oct1r;
+
 	//==============================================================================
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(EcapsAudioProcessor)
 };

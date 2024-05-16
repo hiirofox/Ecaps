@@ -25,10 +25,26 @@ EcapsAudioProcessorEditor::EcapsAudioProcessorEditor(EcapsAudioProcessor& p)
 	S_UPITCH.ParamLink(audioProcessor.GetParams(), "upitch");
 	S_SYNC.setText("SYNC");
 	S_SYNC.ParamLink(audioProcessor.GetParams(), "sync");
+
+	S_OCTV.setText("OCTV");
+	S_HARMV.setText("HARMV");
+	S_OCTDECAY.setText("DECAY");
+	S_OCTMIX.setText("MIX");
+
+	S_OCTV.ParamLink(audioProcessor.GetParams(), "octv");
+	S_HARMV.ParamLink(audioProcessor.GetParams(), "harmv");
+	S_OCTDECAY.ParamLink(audioProcessor.GetParams(), "octdecay");
+	S_OCTMIX.ParamLink(audioProcessor.GetParams(), "octmix");
+
 	addAndMakeVisible(S_FREQ1);
 	addAndMakeVisible(S_DISP1);
 	addAndMakeVisible(S_UPITCH);
 	addAndMakeVisible(S_SYNC);
+
+	addAndMakeVisible(S_OCTV);
+	addAndMakeVisible(S_HARMV);
+	addAndMakeVisible(S_OCTDECAY);
+	addAndMakeVisible(S_OCTMIX);
 }
 
 EcapsAudioProcessorEditor::~EcapsAudioProcessorEditor()
@@ -54,4 +70,11 @@ void EcapsAudioProcessorEditor::resized()
 	S_DISP1.setPos(32 + 64 * 1, 32);
 	S_UPITCH.setPos(32 + 64 * 2, 32);
 	S_SYNC.setPos(32 + 64 * 3, 32);
+
+
+	S_OCTV.setPos(32 + 64 * 4, 32 + 64 * 0);
+	S_HARMV.setPos(32 + 64 * 4, 32 + 64 * 1);
+	S_OCTDECAY.setPos(32 + 64 * 4, 32 + 64 * 2);
+	S_OCTMIX.setPos(32 + 64 * 4, 32 + 64 * 3);
+
 }

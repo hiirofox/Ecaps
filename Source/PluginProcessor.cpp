@@ -51,9 +51,18 @@ juce::AudioProcessorValueTreeState::ParameterLayout EcapsAudioProcessor::createP
 {
 	juce::AudioProcessorValueTreeState::ParameterLayout layout;
 	layout.add(std::make_unique<juce::AudioParameterFloat>("freq1", "FREQ1", 0.0, 1.0, 0.0));
+
 	layout.add(std::make_unique<juce::AudioParameterFloat>("disp", "DISP", -1.0, 1.0, 0.0));
+
 	layout.add(std::make_unique<juce::AudioParameterFloat>("upitch", "UPITCH", 0.0, 1.0, 0.0));
+
 	layout.add(std::make_unique<juce::AudioParameterFloat>("sync", "SYNC", 0.0, 8.0, 1.0));
+
+	layout.add(std::make_unique<juce::AudioParameterFloat>("octv", "OCTV", 0.0, 1.0, 0.0));
+	layout.add(std::make_unique<juce::AudioParameterFloat>("harmv", "HARMV", 0.0, 1.0, 0.0));
+	layout.add(std::make_unique<juce::AudioParameterFloat>("octdecay", "DECAY", 0.0, 1.0, 0.0));
+	layout.add(std::make_unique<juce::AudioParameterFloat>("octmix", "MIX", 0.0, 1.0, 0.0));
+
 	return layout;
 }
 
@@ -214,6 +223,11 @@ void EcapsAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::M
 	float unipitch = *Params.getRawParameterValue("upitch");
 	float sync = *Params.getRawParameterValue("sync");
 
+	float octv = *Params.getRawParameterValue("octv");
+	float harmv = *Params.getRawParameterValue("harmv");
+	float octdecay = *Params.getRawParameterValue("octdecay");
+	float octmix = *Params.getRawParameterValue("octmix");
+
 	freq = freq * freq * 5000;
 	unipitch = unipitch * unipitch;
 	ad1l.setFreq(freq);
@@ -232,6 +246,17 @@ void EcapsAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::M
 
 	sync1l.setSync(sync);
 	sync1r.setSync(sync);
+
+	octv = octv * octv;
+	harmv = harmv * harmv;
+	oct1l.setOctV(octv);
+	oct1r.setOctV(octv);
+	oct1l.setHarmV(harmv);
+	oct1r.setHarmV(harmv);
+	oct1l.setDecay(octdecay);
+	oct1r.setDecay(octdecay);
+	oct1l.setMix(octmix);
+	oct1r.setMix(octmix);
 
 	for (int i = 0; i < numSamples; ++i)
 	{
@@ -258,6 +283,8 @@ void EcapsAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::M
 			uni1r.apply(ad1r.getAmplitudePtr(), HarmonicNum);
 			sync1l.apply(ad1l.getAmplitudePtr(), HarmonicNum);
 			sync1r.apply(ad1r.getAmplitudePtr(), HarmonicNum);
+			oct1l.apply(ad1l.getAmplitudePtr(), HarmonicNum);
+			oct1r.apply(ad1r.getAmplitudePtr(), HarmonicNum);
 		}
 
 		float outl = ad1l.ProcWithFM(0, 0) * 0.1;
