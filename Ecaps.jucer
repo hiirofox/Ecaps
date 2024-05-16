@@ -17,6 +17,8 @@
         <FILE id="iUyyuD" name="AdditiveCore.h" compile="0" resource="0" file="Source/algorithm/AdditiveCore.h"/>
         <FILE id="w9NLRe" name="Disperse.cpp" compile="1" resource="0" file="Source/algorithm/Disperse.cpp"/>
         <FILE id="hPyuvd" name="Disperse.h" compile="0" resource="0" file="Source/algorithm/Disperse.h"/>
+        <FILE id="ncB7Bk" name="Octaver.cpp" compile="1" resource="0" file="Source/algorithm/Octaver.cpp"/>
+        <FILE id="yyLrgL" name="Octaver.h" compile="0" resource="0" file="Source/algorithm/Octaver.h"/>
         <FILE id="Cuavjh" name="Sync.cpp" compile="1" resource="0" file="Source/algorithm/Sync.cpp"/>
         <FILE id="hwBqdk" name="Sync.h" compile="0" resource="0" file="Source/algorithm/Sync.h"/>
         <FILE id="MpkUUR" name="Unison.cpp" compile="1" resource="0" file="Source/algorithm/Unison.cpp"/>
