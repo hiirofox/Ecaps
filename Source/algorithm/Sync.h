@@ -11,6 +11,9 @@ namespace HDSP
 	{
 	private:
 		float sync;
+
+		HDSP::complex_f32_t tmp1[512];
+		HDSP::complex_f32_t tmp2[1024];
 	public:
 		Sync();
 		~Sync();

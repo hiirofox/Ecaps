@@ -10,7 +10,6 @@ void HDSP::Octaver::setMix(float Mix) { mix = Mix; }
 
 void HDSP::Octaver::apply(float Amps[], int harmN)
 {
-	float tmp1[512];
 	memset(tmp1, 0, sizeof(tmp1));
 	for (int i = 1; i < harmv * harmN; ++i)//harm
 	{

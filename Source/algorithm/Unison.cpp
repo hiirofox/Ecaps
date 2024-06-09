@@ -23,6 +23,7 @@ void HDSP::Unison::apply(float* Amps, int harmN)
 {
 	t += speed;
 	float tmp = 0;
+	float balance = pow(sqrt(2), num);
 	for (int i = 0; i < harmN; ++i)
 	{
 		tmp = 0;
@@ -30,6 +31,7 @@ void HDSP::Unison::apply(float* Amps, int harmN)
 		{
 			tmp += cos_table[(uint32_t)(i * t * rnd[j]) >> 16];
 		}
-		Amps[i] *= tmp;
+		//Amps[i] *= tmp * balance;//这个是相当于叠加每个振荡器
+		Amps[i] *= tmp;//这个就能量平均了
 	}
 }

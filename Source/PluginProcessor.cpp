@@ -232,8 +232,8 @@ void EcapsAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::M
 	unipitch = unipitch * unipitch;
 	ad1l.setFreq(freq);
 	ad1r.setFreq(freq);
-	uni1l.setUnisonNum(2);
-	uni1r.setUnisonNum(2);
+	uni1l.setUnisonNum(8);
+	uni1r.setUnisonNum(8);
 	uni1l.setPhase(0);
 	uni1r.setPhase(0);
 	uni1l.setSpeed(unipitch * 1000);

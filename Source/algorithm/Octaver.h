@@ -13,6 +13,7 @@ namespace HDSP
 		float decay, mix;
 		//叠加的衰减度，之类的
 
+		float tmp1[512];
 	public:
 		Octaver();
 		~Octaver();
