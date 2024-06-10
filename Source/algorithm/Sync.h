@@ -5,9 +5,12 @@
 #include <math.h>
 #include "math/fft.h"
 
+#include "modplug.h"
+#include "modeditor.h"
+
 namespace HDSP
 {
-	class Sync
+	class Sync :public modpulg, public modeditor
 	{
 	private:
 		float sync;

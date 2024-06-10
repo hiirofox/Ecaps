@@ -3,9 +3,12 @@
 #include <math.h>
 #include <string.h>
 
+#include "modplug.h"
+#include "modeditor.h"
+
 namespace HDSP
 {
-	class Octaver
+	class Octaver :public modpulg, public modeditor
 	{
 	private:
 		float octv, harmv;

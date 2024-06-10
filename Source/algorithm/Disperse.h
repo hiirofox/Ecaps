@@ -4,9 +4,12 @@
 #include <stdlib.h>
 #include <stdint.h>
 
+#include "modplug.h"
+#include "modeditor.h"
+
 namespace HDSP
 {
-	class Disperse
+	class Disperse :public modpulg, public modeditor
 	{
 	private:
 		int32_t t;
