@@ -10,8 +10,14 @@
           <FILE id="TyyuXK" name="complex.cpp" compile="1" resource="0" file="Source/algorithm/math/complex.cpp"/>
           <FILE id="WUA5hk" name="fft.h" compile="0" resource="0" file="Source/algorithm/math/fft.h"/>
           <FILE id="TfEvmp" name="fft.cpp" compile="1" resource="0" file="Source/algorithm/math/fft.cpp"/>
+          <FILE id="wHafFs" name="incfft.cpp" compile="1" resource="0" file="Source/algorithm/math/incfft.cpp"/>
+          <FILE id="NKemrq" name="incfft.h" compile="0" resource="0" file="Source/algorithm/math/incfft.h"/>
         </GROUP>
         <FILE id="KzmpLv" name="alg.h" compile="0" resource="0" file="Source/algorithm/alg.h"/>
+        <FILE id="oqPb4w" name="modplug.cpp" compile="1" resource="0" file="Source/algorithm/modplug.cpp"/>
+        <FILE id="VEETji" name="modplug.h" compile="0" resource="0" file="Source/algorithm/modplug.h"/>
+        <FILE id="I0hZlP" name="modeditor.h" compile="0" resource="0" file="Source/algorithm/modeditor.h"/>
+        <FILE id="ppo3Mm" name="modeditor.cpp" compile="1" resource="0" file="Source/algorithm/modeditor.cpp"/>
         <FILE id="KOrvxh" name="AdditiveCore.cpp" compile="1" resource="0"
               file="Source/algorithm/AdditiveCore.cpp"/>
         <FILE id="iUyyuD" name="AdditiveCore.h" compile="0" resource="0" file="Source/algorithm/AdditiveCore.h"/>

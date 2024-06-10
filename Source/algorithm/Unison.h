@@ -4,9 +4,12 @@
 #include <stdlib.h>
 #include <stdint.h>
 
+#include "modplug.h"
+#include "modeditor.h"
+
 namespace HDSP
 {
-	class Unison
+	class Unison :public modpulg, public modeditor
 	{
 	private:
 		int32_t t;
