@@ -5,6 +5,11 @@
 #include "Sync.h"
 #include "Unison.h"
 #include "Octaver.h"
+#include "FreqStretch.h"
+#include "FreqShifter.h"
+
+
+
 
 //¼Æ»®£º
 /*

@@ -63,6 +63,10 @@ juce::AudioProcessorValueTreeState::ParameterLayout EcapsAudioProcessor::createP
 	layout.add(std::make_unique<juce::AudioParameterFloat>("octdecay", "DECAY", 0.0, 1.0, 0.0));
 	layout.add(std::make_unique<juce::AudioParameterFloat>("octmix", "MIX", 0.0, 1.0, 0.0));
 
+	layout.add(std::make_unique<juce::AudioParameterFloat>("stretch", "FStretch", 0.0, 4.0, 1.0));
+	layout.add(std::make_unique<juce::AudioParameterFloat>("fshift", "FShift", 0.0, 32.0, 1.0));
+
+
 	return layout;
 }
 
@@ -228,6 +232,9 @@ void EcapsAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::M
 	float octdecay = *Params.getRawParameterValue("octdecay");
 	float octmix = *Params.getRawParameterValue("octmix");
 
+	float stretch = *Params.getRawParameterValue("stretch");
+	float fshift = *Params.getRawParameterValue("fshift");
+
 	freq = freq * freq * 5000;
 	unipitch = unipitch * unipitch;
 	ad1l.setFreq(freq);
@@ -258,6 +265,13 @@ void EcapsAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::M
 	oct1l.setMix(octmix);
 	oct1r.setMix(octmix);
 
+	fstc1l.setStretch(stretch);
+	fstc1r.setStretch(stretch);
+
+	fsf1l.setShift(fshift);
+	fsf1r.setShift(fshift);
+
+
 	for (int i = 0; i < numSamples; ++i)
 	{
 		wt_counter++;
@@ -285,6 +299,10 @@ void EcapsAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::M
 			sync1r.apply(ad1r.getAmplitudePtr(), HarmonicNum);
 			oct1l.apply(ad1l.getAmplitudePtr(), HarmonicNum);
 			oct1r.apply(ad1r.getAmplitudePtr(), HarmonicNum);
+			fstc1l.apply(ad1l.getAmplitudePtr(), HarmonicNum);
+			fstc1r.apply(ad1r.getAmplitudePtr(), HarmonicNum);
+			fsf1l.apply(ad1l.getAmplitudePtr(), HarmonicNum);
+			fsf1r.apply(ad1r.getAmplitudePtr(), HarmonicNum);
 		}
 
 		float outl = ad1l.ProcWithFM(0, 0) * 0.1;

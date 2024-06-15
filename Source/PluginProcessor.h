@@ -96,6 +96,11 @@ private:
 	HDSP::Octaver oct1l;
 	HDSP::Octaver oct1r;
 
+	HDSP::FreqStretch fstc1l;
+	HDSP::FreqStretch fstc1r;
+
+	HDSP::FreqShifter fsf1l;
+	HDSP::FreqShifter fsf1r;
 	//==============================================================================
 	JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(EcapsAudioProcessor)
 };

@@ -23,6 +23,10 @@
         <FILE id="iUyyuD" name="AdditiveCore.h" compile="0" resource="0" file="Source/algorithm/AdditiveCore.h"/>
         <FILE id="w9NLRe" name="Disperse.cpp" compile="1" resource="0" file="Source/algorithm/Disperse.cpp"/>
         <FILE id="hPyuvd" name="Disperse.h" compile="0" resource="0" file="Source/algorithm/Disperse.h"/>
+        <FILE id="IQtdMB" name="FreqShifter.cpp" compile="1" resource="0" file="Source/algorithm/FreqShifter.cpp"/>
+        <FILE id="awZSUS" name="FreqShifter.h" compile="0" resource="0" file="Source/algorithm/FreqShifter.h"/>
+        <FILE id="NWZgnc" name="FreqStretch.h" compile="0" resource="0" file="Source/algorithm/FreqStretch.h"/>
+        <FILE id="u49RwX" name="FreqStretch.cpp" compile="1" resource="0" file="Source/algorithm/FreqStretch.cpp"/>
         <FILE id="ncB7Bk" name="Octaver.cpp" compile="1" resource="0" file="Source/algorithm/Octaver.cpp"/>
         <FILE id="yyLrgL" name="Octaver.h" compile="0" resource="0" file="Source/algorithm/Octaver.h"/>
         <FILE id="Cuavjh" name="Sync.cpp" compile="1" resource="0" file="Source/algorithm/Sync.cpp"/>
